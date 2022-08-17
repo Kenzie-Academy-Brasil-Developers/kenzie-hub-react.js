@@ -15,19 +15,17 @@ export const Overlay = styled.div`
 `;
 
 export const Container = styled.form`
-  display: flex;
-  flex-direction: column;
+  
 
   position: absolute;
-  left: 40%;
+  left: 30%;
   top: 30%;
 
-  width: 369px;
-  height: 342px;
+  height: 370px;
 
   border-radius: 4px;
 
-  background: var(--color-grey-3);
+  background: #212529;
 
   div {
     display: flex;
@@ -38,25 +36,21 @@ export const Container = styled.form`
     width: 369px;
     height: 50px;
 
-    gap: 10px;
-
-    background: var(--color-grey-2);
+    background: #343b41;
     border-radius: 4px 4px 0px 0px;
 
     h2 {
-      position: relative;
-      top: 1%;
-      left: 10%;
-
       font-family: "Inter";
       font-style: normal;
-      font-weight: 700;
+      font-weight: 500;
       font-size: 18px;
 
-      color: var(--color-grey0);
+      color: #f9f8fe;
     }
 
     button {
+
+      cursor: pointer;
       display: flex;
 
       position: relative;
@@ -67,7 +61,7 @@ export const Container = styled.form`
 
       font-size: 20px;
 
-      color: var(--color-grey-1);
+      color: #868e96;
 
       border: none;
       background: transparent;
@@ -85,7 +79,7 @@ export const Container = styled.form`
     font-size: 14px;
     line-height: 0px;
 
-    color: var(--color-grey0);
+    color: #f8f9fe;
   }
 
   input {
@@ -103,9 +97,9 @@ export const Container = styled.form`
     width: 330px;
     height: 48px;
 
-    background: var(--color-grey-2);
+    background: #343b41;
 
-    border: 1.2182px solid var(--color-grey-2);
+    border: 1.2182px solid #343b41;
     border-radius: 4px;
   }
 
@@ -120,7 +114,7 @@ export const Container = styled.form`
     font-size: 14px;
     line-height: 0px;
 
-    color: var(--color-grey0);
+    color: #f8f9fe;
   }
 
   select {
@@ -141,10 +135,10 @@ export const Container = styled.form`
     font-size: 16px;
     line-height: 26px;
 
-    background: var(--color-grey-2);
-    color: var(--color-grey0);
+    background: #343b41;
+    color: #f8f9fe;
 
-    border: 1.2182px solid var(--color-grey-2);
+    border: 1.2182px solid #343b41;
     border-radius: 4px;
 
     option {
@@ -154,7 +148,7 @@ export const Container = styled.form`
       font-size: 16px;
       line-height: 26px;
 
-      color: var(--color-grey0);
+      color: #f8f9fe;
     }
   }
 
@@ -176,11 +170,11 @@ export const Container = styled.form`
     font-size: 16px;
     line-height: 26px;
 
-    color: var(--color-grey0);
+    color: #f8f9fe;
 
-    background: var(--color-primary);
+    background: #ff577f;
 
-    border: 1px solid var(--color-primary);
+    border: 1px solid #ff577f;
     border-radius: 4px;
   }
 `;

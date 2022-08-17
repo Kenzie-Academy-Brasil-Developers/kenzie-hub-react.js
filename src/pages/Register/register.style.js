@@ -28,7 +28,7 @@ export const Header = styled.header`
     width: 67.49px;
     height: 40.11px;
 
-    background: var(--color-grey-2);
+    background: #343B41;
 
     border-radius: 4px;
     border: none;
@@ -45,7 +45,7 @@ export const Container = styled.form`
   width: 370px;
   height: 730px;
 
-  background: var(--color-grey-3);
+  background: #212529;
 
   box-shadow: 0px 4px 40px -10px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
@@ -66,9 +66,9 @@ export const Container = styled.form`
     margin-bottom: -35px;
 
     border-radius: 5px;
-    background-color: var(--color-grey-1);
+    background-color: #868E96;
 
-    color: var(--color-grey0);
+    color: #F8F9FA;
 }
 
   h2 {
@@ -77,7 +77,7 @@ export const Container = styled.form`
     font-weight: 700;
     font-size: 18px;
 
-    color: var(--color-grey0);
+    color: #F8F9FA;
   }
 
   p {
@@ -86,7 +86,7 @@ export const Container = styled.form`
     font-weight: 400;
     font-size: 12px;
 
-    color: var(--color-grey-1);
+    color: #868E96;
   }
 
   label {
@@ -101,7 +101,7 @@ export const Container = styled.form`
     margin-top: 5px;
     margin-bottom: -8px;
 
-    color: var(--color-grey0);
+    color: #F8F9FA;
   }
 
   input {
@@ -111,9 +111,9 @@ export const Container = styled.form`
     width: 329.93px;
     height: 48px;
 
-    background: var(--color-grey-1);
+    background: #868E96;
 
-    border: 1.2182px solid var(--color-grey-1);
+    border: 1.2182px solid #868E96;
     border-radius: 4px;
   }
 
@@ -126,10 +126,10 @@ export const Container = styled.form`
     width: 330px;
     height: 48px;
 
-    background: var(--color-grey-1);
-    color: var(--color-grey0);
+    background: #868E96;
+    color: #F8F9FA;
 
-    border: 1.2182px solid var(--color-grey-1);
+    border: 1.2182px solid #868E96;
     border-radius: 4px;
   }
 
@@ -141,10 +141,10 @@ export const Container = styled.form`
     width: 326px;
     height: 48px;
 
-    color: var(--color-grey0);
-    background: var(--color-primary-Negative);
+    color: #F8F9FA;
+    background: #59323F;
 
-    border: 1.2182px solid var(--color-primary-Negative);
+    border: 1.2182px solid #59323F;
     border-radius: 4px;
   }
 `;
@@ -161,7 +161,7 @@ export const ModalSucess = styled.div`
   left: 82.5%;
   top: 1%;
 
-  background: var(--color-grey-2);
+  background: #343B41;
   border-radius: 4px;
 
   p {
@@ -175,7 +175,7 @@ export const ModalSucess = styled.div`
     font-size: 14px;
     line-height: 24px;
 
-    color: var(--color-grey0);
+    color: #F8F9FA;
   }
 
   .fig {
@@ -186,8 +186,8 @@ export const ModalSucess = styled.div`
     width: 28px;
     height: 28px;
 
-    color: var(--color-success);
-    background-color: var(--color-grey0);
+    color: #3FE864;
+    background-color: #F8F9FA;
 
     border: 1px;
     border-radius: 50%;
@@ -201,7 +201,7 @@ export const ModalSucess = styled.div`
     width: 206px;
     height: 6px;
 
-    background: var(--color-success);
+    background: #3FE864;
     border-radius: 0px 0px 0px 4px;
   }
 
@@ -218,7 +218,7 @@ export const ModalSucess = styled.div`
     font-size: 20px;
     font-weight: 500;
 
-    color:var(--color-grey-1);
+    color: #868E96;
   }
 `;
 
@@ -234,7 +234,7 @@ export const ModalError = styled.div`
   left: 82.5%;
   top: 11%;
 
-  background: var(--color-grey-2);
+  background: #343B41;
   border-radius: 4px;
 
   p {
@@ -248,7 +248,7 @@ export const ModalError = styled.div`
     font-size: 14px;
     line-height: 24px;
 
-    color: var(--color-grey0);
+    color: #F8F9FA;
   }
 
   .fig {
@@ -259,8 +259,8 @@ export const ModalError = styled.div`
     width: 28px;
     height: 28px;
 
-    color: var(--color-negative);
-    background-color: var(--color-grey0);
+    color: #E83F5B;
+    background-color: #F8F9FA;
 
     border: 1px;
     border-radius: 50%;
@@ -274,7 +274,7 @@ export const ModalError = styled.div`
     width: 206px;
     height: 6px;
 
-    background: var(--color-success);
+    background: #3FE864;
     border-radius: 0px 0px 0px 4px;
   }
 
@@ -291,6 +291,6 @@ export const ModalError = styled.div`
     font-size: 20px;
     font-weight: 500;
 
-    color:var(--color-grey-1);
+    color: #868E96;
   }
 `;

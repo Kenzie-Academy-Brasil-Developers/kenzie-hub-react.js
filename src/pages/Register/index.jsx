@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast";
 
 const schema = yup.object({
   name: yup.string().required("Nome completo obrigatório!"),
-  email: yup.string().email().required("Necessário Email válido!"),
+  email: yup.string().required("Necessário Email válido!").email(),
   password: yup
     .string()
     .min(8, "Min 8 Caracteres, 1 núm, 1 letra e um caracter especial!")

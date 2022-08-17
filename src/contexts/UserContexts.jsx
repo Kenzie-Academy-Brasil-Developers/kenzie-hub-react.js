@@ -5,7 +5,7 @@ import api from "../api/api.js";
 
 export const UserContext = createContext({});
 
-const UserProvider = ({ children }) => {
+export const UserProvider = ({ children }) => {
   
   const [user, setUser] = useState([]);
 
@@ -27,7 +27,6 @@ const UserProvider = ({ children }) => {
 
           const { data } = await api.get("/profile");
 
-          /* console.log("BUSCAR O USUARIO", data); */
           setUser(data);
         } catch (err) {
           console.log(err);
@@ -69,7 +68,7 @@ const UserProvider = ({ children }) => {
 
     api.post("/users/techs", data)
         .then((resp) => {
-            console.log("CONSOLE LOG do respponse do Registro", resp);
+            console.log("response da tech", resp);
             const novaTech = [...user.techs, resp.data]
             setUser({ ...user, techs: novaTech })
 
@@ -88,7 +87,7 @@ const UserProvider = ({ children }) => {
         });
 }
 
-const DeleteTech = (id) => {
+  const DeleteTech = (id) => {
     setLoading(true)
 
     api.delete(`/users/techs/${id}`)
@@ -113,7 +112,7 @@ const DeleteTech = (id) => {
         .finally(() => setLoading(false));
 }
 
-const ModifyTech = (data, id) => {
+  const ModifyTech = (data, id) => {
     setLoading(true)
 
     const ModifyTec = user.techs.filter((elem) => elem.id !== id)
@@ -140,8 +139,6 @@ const ModifyTech = (data, id) => {
         .finally(() => setLoading(false));;
 }
 
- 
-
   return (
       <UserContext.Provider value={{
           user,
@@ -158,4 +155,4 @@ const ModifyTech = (data, id) => {
   );
 };
 
-export default UserProvider;
+

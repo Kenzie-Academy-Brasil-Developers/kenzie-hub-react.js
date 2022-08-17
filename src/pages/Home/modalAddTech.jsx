@@ -1,12 +1,12 @@
 import { FaRegTrashAlt } from "react-icons/fa";
-import { BsArrowRepeat } from "react-icons/bs";
+import { BiEditAlt } from "react-icons/bi";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContexts";
 import { useState } from "react";
 import ModifyTechnology from "../ModalModifyTech/index";
 
 const RenderAddTechnology = ({ userValue }) => {
-  const { DeleteTechnology } = useContext(UserContext);
+  const { DeleteTech } = useContext(UserContext);
 
   const [modalModify, setModalModify] = useState(false);
 
@@ -24,15 +24,17 @@ const RenderAddTechnology = ({ userValue }) => {
         type="button"
         onClick={() => setModalModify(true)}
       >
-        <BsArrowRepeat />
+        <BiEditAlt />
       </button>
 
       <button
         type="button"
         className="btnDelete"
-        onClick={() => DeleteTechnology(userValue.id)}
+        onClick={() => DeleteTech(userValue.id)}
       >
-        <FaRegTrashAlt />
+        <span>
+          <FaRegTrashAlt />
+        </span>
       </button>
     </li>
   );

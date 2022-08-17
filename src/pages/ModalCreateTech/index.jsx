@@ -5,7 +5,7 @@ import { UserContext } from "../../contexts/UserContexts";
 import { Container, Overlay } from "./modalCreateTech.style.js";
 
 const CreateTechnology = () => {
-  const { createTechnology, modalIn, setModalIn } = useContext(UserContext);
+  const { createTech, modalIn, setModalIn } = useContext(UserContext);
 
   const { register, handleSubmit } = useForm({});
 
@@ -13,9 +13,9 @@ const CreateTechnology = () => {
     <>
       {modalIn && (
         <Overlay onClick={() => setModalIn(false)}>
-        <Container onClick={(event) => event.stopPropagation()} onSubmit={handleSubmit((data) => createTechnology(data))}> {/* AQUI O FORM PEGA OS VALUE DO USER E PASSA PARA A API, RETORNANDO O CADASTRO NA HOME */}
+        <Container onClick={(event) => event.stopPropagation()} onSubmit={handleSubmit((data) => createTech(data))}>
           <div>
-            <h2>Cadastrar Tecnologia</h2>
+            <h2>Adicionar Tecnologia</h2>
             <button type="button"
               onClick={() => {
                 setModalIn(false);

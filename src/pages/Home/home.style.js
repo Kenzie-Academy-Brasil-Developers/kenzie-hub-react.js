@@ -11,9 +11,9 @@ export const Header = styled.header`
   width: 100%;
   height: 72px;
 
-  border-bottom: 1px solid var(--color-grey-1);
+  border-bottom: 1px solid #868E96;
 
-  background: var(--color-grey-4);
+  background: #121214;
 
   @media screen and (min-width: 768px) and (max-width: 1023px) {
   }
@@ -49,8 +49,8 @@ export const Header = styled.header`
     width: 55.49px;
     height: 32px;
 
-    color: var(--color-grey0);
-    background: var(--color-grey-3);
+    color: #f8f9fa;
+    background: #212529;
 
     border-radius: 4px;
     border: none;
@@ -65,9 +65,9 @@ export const Main = styled.main`
   width: 100%;
   height: 90px;
 
-  background: var(--color-grey-4);
+  background: #121214;
 
-  border-bottom: 1px solid var(--color-grey-1);
+  border-bottom: 1px solid #868e96;
 
   div {
     display: flex;
@@ -93,7 +93,7 @@ export const Main = styled.main`
     font-size: 22px;
     line-height: 28px;
 
-    color: var(--color-grey0);
+    color: #f8f9fa;
   }
 
   span {
@@ -107,7 +107,7 @@ export const Main = styled.main`
     font-size: 15px;
     line-height: 22px;
 
-    color: var(--color-grey-1);
+    color: #868e96;
   }
 `;
 
@@ -117,11 +117,9 @@ export const DivNovidades = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  margin-bottom: 6%;
-
   width: 75%;
 
-  background-color: red;
+  padding: 20px;
 
   height: 50px;
 
@@ -146,21 +144,19 @@ export const DivNovidades = styled.div`
     font-size: 18px;
     line-height: 28px;
 
-    color: var(--color-grey0);
+    color: #868e96;
   }
 
   .btnSubHeader {
     background-color: transparent;
     border: none;
 
-    color: var(--color-grey-1);
+    color: #868e96;
   }
 
   .iconSubHeader {
     font-size: 38px;
   }
-
-  ////////////////////////////////////////
 
   .tagForm {
     display: flex;
@@ -173,10 +169,11 @@ export const DivNovidades = styled.div`
     right: 6px;
     top: 50px;
 
-    background: var(--color-grey-3);
+    background: #212529;
     border-radius: 4px;
 
-    overflow-y: scroll;
+    overflow-y: hidden;
+    overflow-x: hidden;
   }
 
   ul {
@@ -211,12 +208,12 @@ export const DivNovidades = styled.div`
 
     padding: 20px;
 
-    background: var(--color-grey-4);
+    background: #121214;
     border-radius: 4px;
   }
 
   li:hover {
-    background: var(--color-grey-2);
+    background: #343b41;
   }
 
   .tagH3 {
@@ -230,7 +227,7 @@ export const DivNovidades = styled.div`
     font-size: 17px;
     line-height: 22px;
 
-    color: var(--color-grey0);
+    color: #f8f9fa;
   }
 
   p {
@@ -246,7 +243,7 @@ export const DivNovidades = styled.div`
 
     margin-left: 50%;
 
-    color: var(--color-grey-1);
+    color: #868e96;
   }
 
   .btnAdd {
@@ -254,7 +251,7 @@ export const DivNovidades = styled.div`
     align-items: center;
     justify-content: center;
 
-    color: var(--color-grey0);
+    color: #f8f9fa;
     background-color: transparent;
 
     border: none;
@@ -265,7 +262,7 @@ export const DivNovidades = styled.div`
     align-items: center;
     justify-content: center;
 
-    color: var(--color-grey0);
+    color: #f8f9fa;
     background-color: transparent;
 
     border: none;

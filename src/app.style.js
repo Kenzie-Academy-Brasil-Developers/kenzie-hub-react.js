@@ -9,5 +9,5 @@ export const Main = styled.main`
   width: 100%;
   height: 100vh;
 
-  background-color: var(--color-grey-4);
+  background-color: #121214;
 `;

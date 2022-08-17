@@ -18,7 +18,7 @@ export const Container = styled.form`
   width: 369px;
   height: 502px;
 
-  background: var(--color-grey-3);
+  background: #212529;
   box-shadow: 0px 4px 40px -10px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
 
@@ -29,7 +29,7 @@ export const Container = styled.form`
     font-size: 18px;
     line-height: 28px;
 
-    color: var(--color-grey0);
+    color: #F8F9FA;
   }
 
   label {
@@ -43,7 +43,7 @@ export const Container = styled.form`
     font-size: 12.182px;
     line-height: 0px;
 
-    color: var(--color-grey0);
+    color: #F8F9FA;
   }
 
   input {
@@ -56,9 +56,9 @@ export const Container = styled.form`
     width: 329.93px;
     height: 48px;
 
-    background: var(--color-grey-1);
+    background: #868E96;
 
-    border: 1.2182px solid var(--color-grey0);
+    border: 1.2182px solid #F8F9FA;
     border-radius: 4px;
   }
 
@@ -78,9 +78,9 @@ export const Container = styled.form`
     margin-bottom: -35px;
 
     border-radius: 5px;
-    background-color: var(--color-grey-1);
+    background-color: #868E96;
 
-    color: var(--color-grey0);
+    color: #F8F9FA;
   }
 
   .btnEntrar {
@@ -96,10 +96,11 @@ export const Container = styled.form`
 
     margin-top: 20px;
 
-    background: var(--color-primary);
-    color: var(--color-grey0);
+    background: #FF577F;
 
-    border: 1.2182px solid var(--color-primary);
+    color: #F8F9FA;
+
+    border: 1.2182px solid #FF577F;
     border-radius: 4.07px;
   }
 
@@ -110,7 +111,7 @@ export const Container = styled.form`
     font-size: 12px;
     line-height: 18px;
 
-    color: var(--color-grey-1);
+    color: #868E96;
   }
 
   .btnCadastrar {
@@ -124,10 +125,10 @@ export const Container = styled.form`
     width: 324px;
     height: 48px;
 
-    background: var(--color-grey-1);
-    color: var(--color-grey0);
+    background: #868E96;
+    color: #F8F9FA;
 
-    border: 1.2182px solid var(--color-grey-1);
+    border: 1.2182px solid #FF577F;
     border-radius: 4px;
   }
 `;

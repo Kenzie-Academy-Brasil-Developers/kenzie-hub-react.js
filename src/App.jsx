@@ -2,17 +2,21 @@ import { Main } from "./app.style.js";
 import RoutesMain from "./routes/index.jsx";
 
 import "./App";
-import { UserContext } from "./contexts/UserContexts";
+import { UserProvider } from "./contexts/UserContexts";
+
+import { Toaster } from 'react-hot-toast'
+
 
 
 function App() {
   return (
     <>
-      <UserContext>
+      <UserProvider>
         <Main>
+          <Toaster/>
           <RoutesMain />
           </Main>
-      </UserContext>
+      </UserProvider>
     </>
   );
 }
