@@ -1,121 +1,124 @@
-import { useForm } from 'react-hook-form'
-import { useHistory } from 'react-router-dom'
-import { yupResolver } from '@hookform/resolvers/yup'
-import axios from 'axios'
+import { Container, Header } from "./register.style.js";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import Logotipo from "../../assets/Logo.png";
+import api from "../../api/api.js";
+import { useNavigate } from "react-router";
+import { toast } from "react-hot-toast";
 
-import * as yup from 'yup'
-
-import { FormRegister, HeaderRegister, MainRegister} from './style'
+const schema = yup.object({
+  name: yup.string().required("Nome completo obrigatório!"),
+  email: yup.string().email().required("Necessário Email válido!"),
+  password: yup
+    .string()
+    .min(8, "Min 8 Caracteres, 1 núm, 1 letra e um caracter especial!")
+    .matches(/(\W)|_/)
+    .required(),
+  confirmPassword: yup
+    .string()
+    .min(8, "Necessita ser igual a senha!")
+    .matches(/(\W)|_/)
+    .oneOf([yup.ref("password"), null], "Passwords must match")
+    .required(),
+  contact: yup.string().min(9, "Telefone Obrigatório, 9 digitos").required(),
+});
 
 const Register = () => {
-  const formSchema = yup.object().shape({
-    name: yup
-      .string()
-      .required("Nome obrigatório")
-      .matches(/^[a-zA-Z\s]+$/, "Seu nome não pode conter números"),
-    
-    email: yup.string().required("Email obrigatório").email("Email inválido"),
-
-    password: yup
-      .string()
-      .required("Senha obrigatória")
-      .matches(
-        /^(?=^.{8,}$)((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/,
-        "Sua senha deve conter ao menos: Uma letra maiúscula, uma minúscula, um número e um caractere especial"
-      )
-      .min(8, "Mínimo 8 caracteres"),
-    
-    confirmPassword: yup
-      .string()
-      .required("Confirmação de senha obrigatória")
-      .oneOf([yup.ref("password")], "Senhas não são iguais"),
-  });
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm({
-      resolver: yupResolver(formSchema)
-    })
+    resolver: yupResolver(schema),
+  });
 
-    const history = useHistory()
-  
-  const onSubmit = (data) => {
-    console.log(data)
-
-
-    axios.post('https://kenziehub.herokuapp.com/users', data)
-        .then((response) => {
-            console.log(response.data)
-            window.localStorage.clear()
-            window.localStorage.setItem('authToken', response.data.token)
-        })
-          .catch(err => console.log(err))
-      
-          history.push(`/login`)
-      
-    }
-    
-    const redirectLogin = () => {
-        history.push('/login')
-    }
+  function registerUser(data) {
+    api
+      .post("/users", data)
+      .then((response) => {
+        console.log("CONSOLE LOG do Response do Registro",response);
+        toast.success("Conta criada com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        toast.error("Houve algum erro!", {
+          position: "top-right",
+          autoClose: 5000,
+        });
+        console.log(error);
+      });
+  }
 
   return (
+    <>
+      <Header>
+        <img src={Logotipo} alt="" />
+        <button
+          onClick={() => {
+            navigate("/")
+          }}
+        >
+          Voltar
+        </button>
+      </Header>
 
-    <FormRegister className='form'>
-    <HeaderRegister className='headerRegister'>
-      <h1>Kenzie Hub</h1>
+      <Container onSubmit={handleSubmit(registerUser)}>
+        <h2>Crie sua conta</h2>
+        <p>Rápido e grátis, vamos nessa !</p>
 
-      <button onClick={redirectLogin} className='btnRedirectLogin'>Já possui login?</button>
-      </HeaderRegister>
-      
-      <MainRegister>
-        <form onSubmit={handleSubmit(onSubmit)} className='formRegister'>
+        <label htmlFor="name">* Nome Completo</label>
+        <input type="text" id="name" {...register("name")} />
+        <span>{errors.name?.message}</span>
 
-          <h3>Crie sua conta</h3>
+        <label htmlFor="email">* E-Mail</label>
+        <input type="text" id="email" {...register("email")} />
+        <span>{errors.email?.message}</span>
 
-          <p>Rápido e grátis, vamos nessa</p>
-          <label>Nome<input placeholder='Digite seu nome'
-            {...register('name')} /></label>
-          {errors && <span>{errors.name?.message}</span>}
+        <label htmlFor="password">* Senha</label>
+        <input type="password" id="password" {...register("password")} />
+        <span>{errors.password?.message}</span>
 
-          <label>E-mail<input placeholder='Digite seu e-mail' 
-            {...register('email')} /></label>
-          {errors && <span>{errors.email?.message}</span>}
+        <label htmlFor="confirmPassword">* Confirmar Senha</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          {...register("confirmPassword")}
+        />
+        <span>{errors.confirmPassword?.message}</span>
 
-          <label>Senha<input placeholder='Digite sua senha' type="password"
-            {...register('password')} /></label>
-          {errors && <span>{errors.password?.message}</span>}
+        <label htmlFor="bio">Bio</label>
+        <input type="text" id="bio" {...register("bio")} />
 
-          <label>Confirme sua senha<input placeholder='Digite novamente sua senha' type="password" 
-            {...register('confirmPassword')} /></label>
-          {errors && <span>{errors.confirmPassword?.message}</span>}
+        <label htmlFor="contact">* Contato</label>
+        <input type="text" id="contact" {...register("contact")} />
+        <span>{errors.contact?.message}</span>
 
-          <label>Sua bio<input placeholder='Fale um pouco mais sobre você'{...register('bio')}/></label>
-
-          <label>Contato<input placeholder='Opção para contato'{...register('contact')} /></label>
-          {errors && <span>{errors.contact?.message}</span>}
-
-          <label>
-            Selecione um módulo
-            <select {...register('course_module')}> 
-            <option value="Primeiro módulo">Primeiro módulo</option>
-            <option value="Segundo módulo">Segundo módulo</option>
-              <option value="Terceiro módulo">Terceiro módulo</option>
-              
-              
-            </select>
-            {errors && <span>{errors.course_module?.message}</span>}
-          </label>
-
-          <button className='btnRegister' type='submit'>Cadastrar!</button>
+        <label htmlFor="course_module">* Selecionar Modulo</label>
+        <select
+          id="course_module"
+          {...register("course_module")}
+          required="Escolha um Modulo!"
+        >
+          <option value="Modulo 1 (CSS & HTML BÁSICO)">Modulo 1 </option>
+          <option value="Modulo 2 (CSS, HTML & JS INTERMEDIÁRIO)">Modulo 2</option>
+          <option value="Modulo 3 (CSS, HTML, JS & REACT AVANÇADO)">Modulo 3</option>
+          <option value="Modulo 4">Modulo 4</option>
+          <option value="Modulo 5">Modulo 5</option>
+          <option value="Modulo 6">Modulo 6</option>
           
-          
-        </form>
-      </MainRegister>
-    </FormRegister>
+        </select>
+        <span>{errors.module?.message}</span>
 
+        <button type="submit">Finalizar Cadastro</button>
+      </Container>
+    </>
   );
-}
-export default Register
+};
+
+export default Register;

@@ -1,68 +1,59 @@
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
-import axios from "axios";
+import { useContext } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import Logo from "../../assets/Logo.png";
+import { useNavigate } from "react-router-dom";
+import { Container, Logotipo } from "./login.style.js";
+import { UserContext } from "../../contexts/UserContexts";
 
-import { LoginPage, RedirectRegister } from "./style";
+const schema = yup.object({
+  email: yup.string().email().required("Email Obrigatório!"),
+  password: yup
+    .string()
+    .min(8, "Min 8 Caracteres, 1 núm, 1 letra e um caracter especial!")
+    .required(),
+});
 
+const Login = () => {
 
+  const {SignIn} = useContext(UserContext);
 
+  const {register, handleSubmit, formState: { errors }} = useForm({
+    resolver: yupResolver(schema),
+  });
 
-const Login = ({ setAuthentic }) => {
-    const { register, handleSubmit } = useForm();
-    
-    const history = useHistory()
-
-  const onSubmit = (data) => {
-    console.log(data);
-
-    axios
-      .post("https://kenziehub.herokuapp.com/sessions", data)
-      .then((resp) => {
-        console.log(resp);
-        window.localStorage.clear();
-        window.localStorage.setItem("authToken", resp.data.token);
-        // setAuthentic(true);
-        history.push(`/home/${resp.data.user.name}/${resp.data.user.course_module}`)
-      })
-      .catch((err) => console.log(err));
-    };
-    
-    const redirectRegister = () => {
-        history.push('/')
-    }
+  const navigate = useNavigate();
 
   return (
     <>
-      <LoginPage>
-      
-        <h1>Kenzie Hub</h1>
+      <Logotipo src={Logo} alt="" />
+      <Container onSubmit={handleSubmit(SignIn)}>
+        <h2>Login</h2>
+        <label htmlFor="email">Email</label>
+        <input type="text" id="email" {...register("email")} />
+        <span>{errors.email?.message}</span>
 
-        <form onSubmit={handleSubmit(onSubmit)} className='formLogin'>
+        <label htmlFor="password">Senha</label>
+        <input type="password" id="password" {...register("password")} />
+        <span>{errors.password?.message}</span>
 
-          <h3>Login</h3>
+        <button className="btnEntrar" type="submit">
+          Entrar
+        </button>
 
-          <label>
-            E-mail
-            <input placeholder="Digite seu e-mail" {...register("email")} />
-          </label>
-          <label>
-            Senha
-            <input
-              placeholder="Informe sua senha"
-              type="password"
-              {...register("password")}
-            />
-          </label>
-          <button className="btnLogin" type="submit">Fazer login!</button>
-        </form>
-        <RedirectRegister className="redirectRegister">
-                <h6>Não possui cadastro?</h6>
-                <button className="btnRedirectRegister" onClick={redirectRegister}>Clique Aqui!</button>
-      
-        </RedirectRegister>
-      
-      </LoginPage>
-      </>
+        <p>Ainda não possui uma Conta ?</p>
+
+        <button
+          className="btnCadastrar"
+          onClick={() => {
+            navigate("/register");
+          }}
+        >
+          Cadastre-se
+        </button>
+      </Container>
+    </>
   );
 };
 
