@@ -113,13 +113,12 @@ export const Main = styled.main`
 
 export const DivNovidades = styled.div`
   display: flex;
-  align-items: center;
   flex-direction: column;
   justify-content: center;
 
   width: 75%;
 
-  padding: 20px;
+  margin-top: 200px;
 
   height: 50px;
 

@@ -3,9 +3,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import Logotipo from "../../assets/Logo.png";
-import api from "../../api/api.js";
 import { useNavigate } from "react-router";
-import { toast } from "react-hot-toast";
+import { UserContext } from "../../contexts/UserContexts.jsx";
+import { useContext } from "react";
+
+
 
 const schema = yup.object({
   name: yup.string().required("Nome completo obrigatório!"),
@@ -27,6 +29,8 @@ const schema = yup.object({
 const Register = () => {
   const navigate = useNavigate();
 
+  const {RegisterUser} = useContext(UserContext)
+
   const {
     register,
     handleSubmit,
@@ -34,26 +38,6 @@ const Register = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
-  function registerUser(data) {
-    api
-      .post("/users", data)
-      .then((response) => {
-        console.log("CONSOLE LOG do Response do Registro",response);
-        toast.success("Conta criada com sucesso!", {
-          position: "top-right",
-          autoClose: 5000,
-        });
-        navigate("/");
-      })
-      .catch((error) => {
-        toast.error("Houve algum erro!", {
-          position: "top-right",
-          autoClose: 5000,
-        });
-        console.log(error);
-      });
-  }
 
   return (
     <>
@@ -68,7 +52,7 @@ const Register = () => {
         </button>
       </Header>
 
-      <Container onSubmit={handleSubmit(registerUser)}>
+      <Container onSubmit={handleSubmit(RegisterUser)}>
         <h2>Crie sua conta</h2>
         <p>Rápido e grátis, vamos nessa !</p>
 

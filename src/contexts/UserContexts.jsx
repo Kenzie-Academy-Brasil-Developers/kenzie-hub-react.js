@@ -6,7 +6,6 @@ import api from "../api/api.js";
 export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
-  
   const [user, setUser] = useState([]);
 
   const [loading, setLoading] = useState(true);
@@ -41,9 +40,7 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   const SignIn = async (data) => {
-
-    const resp = await api.post("/sessions", data)
-    .catch((err) => {
+    const resp = await api.post("/sessions", data).catch((err) => {
       toast.error("Erro ao efetuar Login!", {
         position: "top-right",
         autoClose: 5000,
@@ -59,100 +56,123 @@ export const UserProvider = ({ children }) => {
 
     localStorage.setItem("@context-KenzieHub:token", token);
 
-    const toNavigate = location.state?.state?.pathname || '/home'
+    const toNavigate = location.state?.state?.pathname || "/home";
 
     navigate(toNavigate, { replace: true });
   };
 
-  const createTech = (data) => {
-
-    api.post("/users/techs", data)
-        .then((resp) => {
-            console.log("response da tech", resp);
-            const novaTech = [...user.techs, resp.data]
-            setUser({ ...user, techs: novaTech })
-
-            toast.success("Tecnologia cadastrada com sucesso!", {
-                position: "top-right",
-                autoClose: 5000,
-            });
-            setModalIn(false)
-        })
-        .catch((err) => {
-            toast.error("Tecnologia já cadastrada!", {
-                position: "top-right",
-                autoClose: 5000,
-            });
-            console.log("err CreateTechnology", err);
+  const RegisterUser = (data) => {
+    api
+      .post("/users", data)
+      .then((response) => {
+        console.log("CONSOLE LOG do Response do Registro", response);
+        toast.success("Conta criada com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
         });
-}
+        navigate("/");
+      })
+      .catch((error) => {
+        toast.error("Houve algum erro!", {
+          position: "top-right",
+          autoClose: 5000,
+        });
+        console.log(error);
+      });
+  };
+
+  const createTech = (data) => {
+    api
+      .post("/users/techs", data)
+      .then((resp) => {
+        console.log("response da tech", resp);
+        const novaTech = [...user.techs, resp.data];
+        setUser({ ...user, techs: novaTech });
+
+        toast.success("Tecnologia cadastrada com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+        });
+        setModalIn(false);
+      })
+      .catch((err) => {
+        toast.error("Tecnologia já cadastrada!", {
+          position: "top-right",
+          autoClose: 5000,
+        });
+        console.log("err CreateTechnology", err);
+      });
+  };
 
   const DeleteTech = (id) => {
-    setLoading(true)
+    setLoading(true);
 
-    api.delete(`/users/techs/${id}`)
-        .then((resp) => {
-            console.log("CONSOLE LOG do respponse do Registro", resp);
+    api
+      .delete(`/users/techs/${id}`)
+      .then((resp) => {
+        console.log("CONSOLE LOG do respponse do Registro", resp);
 
-            const newTechs = user.techs.filter((elem) => elem.id !== id)
-            setUser({ ...user, techs: newTechs })
+        const newTechs = user.techs.filter((elem) => elem.id !== id);
+        setUser({ ...user, techs: newTechs });
 
-            toast.success("Tecnologia deletada com sucesso!", {
-                position: "top-right",
-                autoClose: 5000,
-            });
-        })
-        .catch((err) => {
-            toast.error("Erro ao deletar!", {
-                position: "top-right",
-                autoClose: 5000,
-            });
-            console.log("err DeleteTechnology", err);
-        })
-        .finally(() => setLoading(false));
-}
+        toast.success("Tecnologia deletada com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+        });
+      })
+      .catch((err) => {
+        toast.error("Erro ao deletar!", {
+          position: "top-right",
+          autoClose: 5000,
+        });
+        console.log("err DeleteTechnology", err);
+      })
+      .finally(() => setLoading(false));
+  };
 
   const ModifyTech = (data, id) => {
-    setLoading(true)
+    setLoading(true);
 
-    const ModifyTec = user.techs.filter((elem) => elem.id !== id)
+    const ModifyTec = user.techs.filter((elem) => elem.id !== id);
 
-    api.put(`/users/techs/${id}`, data)
-        .then((resp) => {
-            console.log("CONSOLE LOG do respponse do Registro", resp);
+    api
+      .put(`/users/techs/${id}`, data)
+      .then((resp) => {
+        console.log("CONSOLE LOG do respponse do Registro", resp);
 
-            const newTechs = [...ModifyTec, resp.data]
-            setUser({ ...user, techs: newTechs })
+        const newTechs = [...ModifyTec, resp.data];
+        setUser({ ...user, techs: newTechs });
 
-            toast.success("Tecnologia modificada com sucesso!", {
-                position: "top-right",
-                autoClose: 5000,
-            });
-        })
-        .catch((err) => {
-            toast.error("Erro ao modificar!", {
-                position: "top-right",
-                autoClose: 5000,
-            });
-            console.log("err ModifyTech", err);
-        })
-        .finally(() => setLoading(false));;
-}
+        toast.success("Tecnologia modificada com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+        });
+      })
+      .catch((err) => {
+        toast.error("Erro ao modificar!", {
+          position: "top-right",
+          autoClose: 5000,
+        });
+        console.log("err ModifyTech", err);
+      })
+      .finally(() => setLoading(false));
+  };
 
   return (
-      <UserContext.Provider value={{
-          user,
-          SignIn,
-          loading,
-          modalIn,
-          setModalIn,
-          createTech,
-          DeleteTech,
-          ModifyTech
-      }}>
+    <UserContext.Provider
+      value={{
+        user,
+        SignIn,
+        RegisterUser,
+        loading,
+        modalIn,
+        setModalIn,
+        createTech,
+        DeleteTech,
+        ModifyTech,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );
 };
-
-
